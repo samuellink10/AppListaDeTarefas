@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppBiblioteca.Views.TelaPrincipal">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="txtTask" Placeholder="typed a new task" HorizontalOptions="FillAndExpand"></Entry>
+                <Button x:Name="btnSave" Text="Save" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+            <Label Text="List Tasks" HorizontalOptions="Center" FontSize="20" FontAttributes="Italic" />
+            <ListView x:Name="lstTask" ItemsSource="{Binding Tarefas}" HasUnevenRows="True" Margin="10">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Excluir" Clicked="ExcluirTask" CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Editar" Clicked="EditarTask" CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Nome}" HorizontalOptions="StartAndExpand"/>
+                                <!--<Switch BindingContext="{Binding .}" x:Name="swhFinalizar" HorizontalOptions="End" Toggled="FinalizarTarefa" IsToggled="{Binding Finalizacao}"/>-->
+                                <Button Text="{Binding Finalizacao}" Clicked="FinalizarTask" HorizontalOptions="End" CommandParameter="{Binding .}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
