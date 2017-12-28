@@ -21,25 +21,25 @@ namespace AppBiblioteca.Views
             InitializeComponent();
             BindingContext = new TelaPrincipalViewModel();
 
-            btnSave.Clicked += delegate {
-                if (TarefaEdicao == null)
-                {
-                    Tarefa t = new Tarefa() { Nome = txtTask.Text, Finalizacao = false };
-                    new DataAccess().Insert(t);
-                    txtTask.Text = "";
-                    txtTask.Focus();
-                    BindingContext = new TelaPrincipalViewModel();
-                }
-                else
-                {
-                    TarefaEdicao.Nome = txtTask.Text;
-                    new DataAccess().Update(TarefaEdicao);
-                    txtTask.Text = "";
-                    txtTask.Focus();
-                    BindingContext = new TelaPrincipalViewModel();
-                    TarefaEdicao = null;
-                }
-            };
+            //btnSave.Clicked += delegate {
+            //    if (TarefaEdicao == null)
+            //    {
+            //        Tarefa t = new Tarefa() { Nome = txtTask.Text, Finalizacao = false };
+            //        new DataAccess().Insert(t);
+            //        txtTask.Text = "";
+            //        txtTask.Focus();
+            //        BindingContext = new TelaPrincipalViewModel();
+            //    }
+            //    else
+            //    {
+            //        TarefaEdicao.Nome = txtTask.Text;
+            //        new DataAccess().Update(TarefaEdicao);
+            //        txtTask.Text = "";
+            //        txtTask.Focus();
+            //        BindingContext = new TelaPrincipalViewModel();
+            //        TarefaEdicao = null;
+            //    }
+            //};
         }
 
         public void ExcluirTask(Object sender, EventArgs e)
@@ -48,20 +48,11 @@ namespace AppBiblioteca.Views
             new DataAccess().Delete(t.Id);
             BindingContext = new TelaPrincipalViewModel();
         }
-        public void EditarTask(Object sender, EventArgs e)
-        {
-            var t = (((MenuItem)sender).CommandParameter) as Tarefa;
-            txtTask.Text = t.Nome;
-            TarefaEdicao = t;
-        }
-        //public void FinalizarTarefa(object sender, Xamarin.Forms.ToggledEventArgs e)
+        //public void EditarTask(Object sender, EventArgs e)
         //{
-        //    var x = BindingContext;
-        //    Tarefa y = new Tarefa();
-        //    y = ((Switch)sender).BindingContext as Tarefa;
-        //    // new DataAccess().Update()
-        //    new DataAccess().Update(y);
-        //    BindingContext = new TelaPrincipalViewModel();
+        //    var t = (((MenuItem)sender).CommandParameter) as Tarefa;
+        //    txtTask.Text = t.Nome;
+        //    TarefaEdicao = t;
         //}
         public void FinalizarTask(object sender, EventArgs e)
         {

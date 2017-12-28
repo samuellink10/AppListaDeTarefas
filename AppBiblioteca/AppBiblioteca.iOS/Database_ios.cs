@@ -20,7 +20,7 @@ namespace AppBiblioteca.iOS
                 string nomeDB = "biblioteca.db3";
                 string folder = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),"..","Libary");
                 var caminhoDB = Path.Combine(folder, nomeDB);
-                return new SQLiteConnection( caminhoDB);
+                return new SQLiteConnection(caminhoDB);
             }
             catch (Exception)
             {

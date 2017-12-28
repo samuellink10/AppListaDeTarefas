@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="TelaPrincipal"
              x:Class="AppBiblioteca.Views.TelaPrincipal">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Entry x:Name="txtTask" Placeholder="typed a new task" HorizontalOptions="FillAndExpand"></Entry>
-                <Button x:Name="btnSave" Text="Save" HorizontalOptions="FillAndExpand"></Button>
+                <Entry x:Name="txtTask" Text="Binding TarefaAtual.Nome" Placeholder="typed a new task" HorizontalOptions="FillAndExpand"></Entry>
+                <Button Command="{Binding SalvarCommand}" Text="Save" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
             <Label Text="List Tasks" HorizontalOptions="Center" FontSize="20" FontAttributes="Italic" />
             <ListView x:Name="lstTask" ItemsSource="{Binding Tarefas}" HasUnevenRows="True" Margin="10">
@@ -14,8 +15,8 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Text="Excluir" Clicked="ExcluirTask" CommandParameter="{Binding .}"/>
-                                <MenuItem Text="Editar" Clicked="EditarTask" CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Excluir" Command="{Binding Source={x:Reference TelaPrincipal}, Path=BindingContext.ExcluirCommand}" CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Editar" Command="{Binding Source={x:Reference TelaPrincipal}, Path=BindingContext.EditarCommand}" CommandParameter="{Binding .}"/>
                             </ViewCell.ContextActions>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Nome}" HorizontalOptions="StartAndExpand"/>

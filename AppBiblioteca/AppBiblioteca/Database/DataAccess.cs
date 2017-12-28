@@ -19,7 +19,7 @@ namespace AppBiblioteca.Database
             _instance.CreateTable<Tarefa>();
         }
 
-        public int Delete(int id) => _instance.Delete<Tarefa>(id);
+        public int Delete(Tarefa t) => _instance.Delete(t);
 
         public List<Tarefa> GetAll() => _instance.Table<Tarefa>().ToList();
 
